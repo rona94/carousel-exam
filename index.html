@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carousel</title>
+        <style>
+            .carousel {
+                position: relative;
+                width: 700px;
+                height: 400px;
+                overflow: hidden;
+            }
+            .carousel img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .carousel .active {
+                z-index: 1;
+            }
+            /* .carousel__content {
+                width: 9999px;
+                display: flex;
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+            }
+            .carousel__control {
+                position: absolute;
+                top: 50%;
+                margin-top: -10px;
+                width: 35px;
+                height: 35px;
+                background: #32a852;
+                color: #fff;
+                font-size: 18px;
+                text-align: center;
+                line-height: 20px;
+                border: 0;
+                border-radius: 100%;
+                cursor: pointer;
+            }
+            .carousel__control.left {
+                left: 15px;
+            }
+            .carousel__control.right {
+                right: 15px;
+            } */
+        </style>
+    </head>
+    <body>
+        <h1>My Carousel</h1>
+        <div class="carousel">
+            <img class="active" alt="First" src="https://placehold.co/350x200?text=1" />
+            <img alt="Second" src="https://placehold.co/350x200?text=2" />
+            <img alt="Third" src="https://placehold.co/350x200?text=3" />
+            <img alt="Fourth" src="https://placehold.co/350x200?text=4" />
+            <img alt="Fifth" src="https://placehold.co/350x200?text=5" />
+
+            <!-- <div>
+                <button class="carousel__control left">&lt;</button>
+                <button class="carousel__control right">&gt;</button>
+            </div> -->
+        </div>
+        <script>
+            let carousel = document.querySelector(".carousel");
+            let imgs = carousel.querySelectorAll(".carousel img");
+            let index = 0;
+
+            (function() {
+                // set width
+                setInterval(() => {
+                    index++;
+
+                    if(index>= imgs.length) {
+                        index = 0;
+                    }
+                    
+                    imgs.forEach(element => {
+                        element.style.zIndex = 0;
+                    });
+
+                    imgs[index].style.zIndex = 1;
+                }, 1000)
+            })();
+        </script>
+        <!-- <script>
+            let carousel = document.querySelector(".carousel");
+            let imgs = carousel.querySelectorAll(".carousel img");
+            let index = 0;
+
+            (function() {
+                // set width
+                imgs.forEach(element => {
+                    element.style.width = carousel.clientWidth + "px";
+                });
+            })();
+            
+            document.querySelector(".carousel__control.left").addEventListener("click", onLeftClick, false);
+            document.querySelector(".carousel__control.right").addEventListener("click", onRightClick, false);
+
+            function onLeftClick(e) {
+                e.preventDefault();
+
+                onCarouselEvent(-1);
+            }
+
+            function onRightClick(e) {
+                e.preventDefault();
+
+                onCarouselEvent(1);
+            }
+
+            function onCarouselEvent(num) {
+                let content = carousel.querySelector(".carousel__content");
+                let width = carousel.clientWidth;
+                let newWidth = 0;
+                
+                index += num;
+                newWidth = width * index * -1;
+
+                if(index < 1) {
+                    index = 1;
+                }
+                else if(index >= imgs.length) {
+                    index = imgs.length - 1;
+                }
+                else {
+                    content.style.transform = "translateX("+newWidth+"px)";
+                }
+            }
+        </script> -->
+    </body>
+</html>
